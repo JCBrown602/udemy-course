@@ -8,6 +8,13 @@ public class StudentResponse {
 
 	private String lastName;
 
+	public StudentResponse(long id, String firstName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public long getId() {
 		return id;
 	}

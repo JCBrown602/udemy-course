@@ -24,6 +24,6 @@ public class CliRunner implements CommandLineRunner {
 		String dtg = dateFormat.format(newTime);
 
 		logger.info(dtg);
-		logger.info("test");
+		logger.info("It begins...");
 	}
 }

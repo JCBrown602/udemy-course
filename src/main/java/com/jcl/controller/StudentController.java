@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jcl.response.StudentResponse;
+
 @RestController // @Controller, @ResponseBody
 @RequestMapping("/api/student")
 public class StudentController {
@@ -14,7 +16,15 @@ public class StudentController {
 
 	@GetMapping("/get")
 	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-	public String getStudent() {
-		return "<h2>Hello " + appName + "</h2>";
+	public StudentResponse getStudent() {
+		StudentResponse sr = new StudentResponse(1, "John", "Jacob");
+		return sr;
+	}
+
+	@RequestMapping("/error")
+	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+	public StudentResponse showError() {
+		StudentResponse sr = new StudentResponse(1, "John", "Wick");
+		return sr;
 	}
 }
