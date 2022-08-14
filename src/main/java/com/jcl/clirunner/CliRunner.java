@@ -26,4 +26,19 @@ public class CliRunner implements CommandLineRunner {
 		logger.info(dtg);
 		logger.info("It begins...");
 	}
+	
+	public static void loggit(String message) {
+		String borderStarString = "";
+		String middlePartString = " Logged message: " + message + " ";
+		String bookEndString = "******";
+		int borderLen = middlePartString.length() + bookEndString.length() * 2;
+		for (int i = 0; i < borderLen; i++) {
+			borderStarString += "*";
+		}
+		
+		// message.length + 
+		logger.info(borderStarString);
+		logger.info(bookEndString + middlePartString + bookEndString);
+		logger.info(borderStarString);
+	}
 }
