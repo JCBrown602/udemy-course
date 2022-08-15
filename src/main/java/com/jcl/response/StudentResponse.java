@@ -2,6 +2,7 @@ package com.jcl.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.jcl.entity.Student;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +21,14 @@ public class StudentResponse {
 
 	@JsonProperty("Last_Name")
 	private String lastName;
-	
+
+	@JsonProperty("Email")
+	private String email;
+
+	public StudentResponse(Student student) {
+		this.id = student.getIdLong();
+		this.firstName = student.getFirstName();
+		this.lastName = student.getLastName();
+		this.email = student.getEmail();
+	}
 }
