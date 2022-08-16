@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.jcl.request.CreateStudentRequest;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "student")
 public class Student {
@@ -29,5 +33,11 @@ public class Student {
 
 	@Column(name = "email")
 	private String email;
+
+	public Student(CreateStudentRequest createStudentRequest) {
+		this.firstName = createStudentRequest.getFirstName();
+		this.lastName = createStudentRequest.getLastName();
+		this.email = createStudentRequest.getEmail();
+	}
 
 }

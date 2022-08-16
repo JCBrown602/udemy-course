@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jcl.entity.Student;
+import com.jcl.request.CreateStudentRequest;
 import com.jcl.response.StudentResponse;
 import com.jcl.service.StudentService;
 
@@ -29,6 +32,13 @@ public class StudentController {
 		});
 
 		return studentResponseList;
+	}
+
+	@PostMapping("/create")
+	public StudentResponse createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
+		Student student = studentService.createStudent(createStudentRequest);
+
+		return new StudentResponse(student);
 	}
 
 	@GetMapping("/get")

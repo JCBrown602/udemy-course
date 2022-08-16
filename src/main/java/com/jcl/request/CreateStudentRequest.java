@@ -8,7 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateStudentRequest {
-	
+
+	// private Long id;
+
 	@JsonProperty("first_name")
 	private String firstName;
 

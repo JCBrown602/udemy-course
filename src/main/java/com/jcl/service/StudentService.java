@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jcl.entity.Student;
 import com.jcl.repository.StudentRepository;
+import com.jcl.request.CreateStudentRequest;
 
 @Service
 public class StudentService {
@@ -17,6 +18,13 @@ public class StudentService {
 	public List<Student> getAllStudents() {
 		// findAll() is provided by JpaRepository() super
 		return studentRepository.findAll();
+	}
+
+	public Student createStudent(CreateStudentRequest createStudentRequest) {
+		Student student = new Student(createStudentRequest);
+
+		studentRepository.save(student);
+		return student;
 	}
 
 }
