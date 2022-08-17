@@ -37,7 +37,7 @@ public class StudentController {
 	@PostMapping("/create")
 	public StudentResponse createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
 		Student student = studentService.createStudent(createStudentRequest);
-
+		
 		return new StudentResponse(student);
 	}
 
