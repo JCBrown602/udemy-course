@@ -3,6 +3,8 @@ package com.jcl.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,9 +37,9 @@ public class StudentController {
 	}
 
 	@PostMapping("/create")
-	public StudentResponse createStudent(@RequestBody CreateStudentRequest createStudentRequest) {
+	public StudentResponse createStudent(@Valid @RequestBody CreateStudentRequest createStudentRequest) {
 		Student student = studentService.createStudent(createStudentRequest);
-		
+
 		return new StudentResponse(student);
 	}
 
