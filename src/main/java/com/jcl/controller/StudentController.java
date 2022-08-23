@@ -8,12 +8,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jcl.entity.Student;
 import com.jcl.request.CreateStudentRequest;
+import com.jcl.request.UpdateStudentRequest;
 import com.jcl.response.StudentResponse;
 import com.jcl.service.StudentService;
 
@@ -40,6 +42,13 @@ public class StudentController {
 	public StudentResponse createStudent(@Valid @RequestBody CreateStudentRequest createStudentRequest) {
 		Student student = studentService.createStudent(createStudentRequest);
 
+		return new StudentResponse(student);
+	}
+	
+	@PutMapping("/update")
+	public StudentResponse updateStudent(@Valid @RequestBody UpdateStudentRequest updateStudentRequest) {
+		Student student = studentService.updateStudent(updateStudentRequest);
+		
 		return new StudentResponse(student);
 	}
 

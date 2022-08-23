@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jcl.entity.Student;
 import com.jcl.repository.StudentRepository;
 import com.jcl.request.CreateStudentRequest;
+import com.jcl.request.UpdateStudentRequest;
 
 @Service
 public class StudentService {
@@ -24,6 +25,38 @@ public class StudentService {
 		Student student = new Student(createStudentRequest);
 
 		studentRepository.save(student);
+		return student;
+	}
+	
+	public Student updateStudent(UpdateStudentRequest updateStudentRequest) {
+		Student student = studentRepository.getReferenceById(updateStudentRequest.getId());
+		
+		// Check first name
+		if (updateStudentRequest.getFirstName() != null &&
+				!updateStudentRequest.getFirstName().isEmpty()) {
+			// Make sure it's capitalized
+			//String output = str.substring(0, 1).toUpperCase() + str.substring(1);
+			student.setFirstName(updateStudentRequest.getFirstName());
+		}
+		
+		// Check last name
+		if (updateStudentRequest.getLastName() != null &&
+				!updateStudentRequest.getLastName().isEmpty()) {
+			// Make sure it's capitalized
+			//String output = str.substring(0, 1).toUpperCase() + str.substring(1);
+			student.setLastName(updateStudentRequest.getLastName());
+		}
+		
+		// Check email
+		if (updateStudentRequest.getEmail() != null &&
+				!updateStudentRequest.getEmail().isEmpty()) {
+			// Make sure it's capitalized
+			//String output = str.substring(0, 1).toUpperCase() + str.substring(1);
+			student.setEmail(updateStudentRequest.getEmail());
+		}
+		
+		// Save values
+		student = studentRepository.save(student);
 		return student;
 	}
 
