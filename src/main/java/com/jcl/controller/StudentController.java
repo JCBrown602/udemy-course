@@ -54,20 +54,6 @@ public class StudentController {
 		
 		return new StudentResponse(student);
 	}
-
-	@GetMapping("/get")
-	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-	public StudentResponse getStudent() {
-		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
-		return sr;
-	}
-
-	@RequestMapping("/error")
-	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-	public StudentResponse showError() {
-		StudentResponse sr = new StudentResponse(1, "John", "Wick", "email");
-		return sr;
-	}
 	
 	// Delete using Param - /delete/id={id}
 //	@DeleteMapping("/delete")
@@ -79,5 +65,32 @@ public class StudentController {
 	@DeleteMapping("/delete/{id}")
 	public String deleteStudent(@PathVariable long id) {
 		return studentService.deleteStudent(id);
+	}
+	
+	@GetMapping("/getByFirstName/{firstName}")
+	public List<StudentResponse> getByFirstName(@PathVariable String firstName) {
+		List<Student> studentList = studentService.getByFirstName(firstName);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
+
+//	@GetMapping("/get")
+//	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+//	public StudentResponse getStudent() {
+//		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
+//		return sr;
+//	}
+
+	@RequestMapping("/error")
+	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+	public StudentResponse showError() {
+		StudentResponse sr = new StudentResponse(1, "John", "Wick", "email");
+		return sr;
 	}
 }
