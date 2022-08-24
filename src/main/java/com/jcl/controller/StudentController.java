@@ -79,13 +79,19 @@ public class StudentController {
 		
 		return studentResponseList;
 	}
+	
+	@GetMapping("getByFirstNameAndLastName/{firstName}/{lastName}")
+	public StudentResponse getByFirstNameAndLastName(@PathVariable String firstName,
+			@PathVariable String lastName) {
+		return new StudentResponse(studentService.getByFirstNameAndLastName(firstName, lastName));
+	}
 
-//	@GetMapping("/get")
-//	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-//	public StudentResponse getStudent() {
-//		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
-//		return sr;
-//	}
+	@GetMapping("/get")
+	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+	public StudentResponse getStudent() {
+		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
+		return sr;
+	}
 
 	@RequestMapping("/error")
 	// @RequestMapping(value = "/get", method = RequestMethod.GET)
