@@ -3,11 +3,14 @@ package com.jcl.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jcl.entity.Student;
 import com.jcl.repository.StudentRepository;
 import com.jcl.request.CreateStudentRequest;
+import com.jcl.request.InQueryRequest;
 import com.jcl.request.UpdateStudentRequest;
 
 @Service
@@ -60,17 +63,30 @@ public class StudentService {
 		return student;
 	}
 	
-	public String deleteStudent(long id) {
+	public String deleteStudent (long id) {
 		studentRepository.deleteById(id);
 		return "Student has been deleted successfully";
 	}
 	
-	public List<Student> getByFirstName(String firstName) {
+	public List<Student> getByFirstName (String firstName) {
 		return studentRepository.findByFirstName(firstName);
 	}
 	
 	public Student getByFirstNameAndLastName (String firstName, String lastName) {
 		return studentRepository.findByFirstNameAndLastName(firstName, lastName);
 	}
+	
+	public List<Student> getByFirstNameOrLastName (String firstName, String lastName) {
+		return studentRepository.findByFirstNameOrLastName(firstName, lastName);
+	}
 
+	public List<Student> getByFirstNameIn (InQueryRequest inQueryRequest) {
+		return studentRepository.findByFirstNameIn(inQueryRequest.getFirstNames());
+	}
+
+	public List<Student> getAllStudentsWithPagination(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		
+		return studentRepository.findAll(pageable).getContent();
+	}
 }
