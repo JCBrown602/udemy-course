@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jcl.entity.Student;
 import com.jcl.repository.StudentRepository;
 import com.jcl.request.CreateStudentRequest;
+import com.jcl.request.InQueryRequest;
 import com.jcl.request.UpdateStudentRequest;
 
 @Service
@@ -60,12 +61,12 @@ public class StudentService {
 		return student;
 	}
 	
-	public String deleteStudent(long id) {
+	public String deleteStudent (long id) {
 		studentRepository.deleteById(id);
 		return "Student has been deleted successfully";
 	}
 	
-	public List<Student> getByFirstName(String firstName) {
+	public List<Student> getByFirstName (String firstName) {
 		return studentRepository.findByFirstName(firstName);
 	}
 	
@@ -77,4 +78,7 @@ public class StudentService {
 		return studentRepository.findByFirstNameOrLastName(firstName, lastName);
 	}
 
+	public List<Student> getByFirstNameIn (InQueryRequest inQueryRequest) {
+		return studentRepository.findByFirstNameIn(inQueryRequest.getFirstNames());
+	}
 }
