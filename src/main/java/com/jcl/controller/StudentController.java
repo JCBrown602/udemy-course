@@ -143,17 +143,17 @@ public class StudentController {
 		return studentResponseList;
 	}
 
-	@GetMapping("/get")
-	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-	public StudentResponse getStudent() {
-		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
-		return sr;
-	}
-
-	@RequestMapping("/error")
-	// @RequestMapping(value = "/get", method = RequestMethod.GET)
-	public StudentResponse showError() {
-		StudentResponse sr = new StudentResponse(1, "John", "Wick", "email");
-		return sr;
-	}
+//	@GetMapping("/get")
+//	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+//	public StudentResponse getStudent() {
+//		StudentResponse sr = new StudentResponse(1, "John", "Jacob", "email");
+//		return sr;
+//	}
+//
+//	@RequestMapping("/error")
+//	// @RequestMapping(value = "/get", method = RequestMethod.GET)
+//	public StudentResponse showError() {
+//		StudentResponse sr = new StudentResponse(1, "John", "Wick", "email");
+//		return sr;
+//	}
 }

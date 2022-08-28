@@ -24,11 +24,16 @@ public class StudentResponse {
 
 	@JsonProperty("Email")
 	private String email;
+	
+	@JsonProperty("Full_Name")
+	private String fullName;
 
 	public StudentResponse(Student student) {
 		this.id = student.getIdLong();
 		this.firstName = student.getFirstName();
 		this.lastName = student.getLastName();
 		this.email = student.getEmail();
+		this.fullName = student.getFirstName() + " " +
+				student.getLastName();
 	}
 }
