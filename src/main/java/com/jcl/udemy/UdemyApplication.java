@@ -17,7 +17,7 @@ public class UdemyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UdemyApplication.class, args);
 
-		CliRunner.loggit("Started.");
+		CliRunner.loggit("Started.", "*");
 	}
 
 }
