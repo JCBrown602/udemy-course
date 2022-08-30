@@ -32,6 +32,7 @@ public class CliRunner implements CommandLineRunner {
 
 	public static void loggit(String msg, String borderStr) {
 		message = msg;
+		dtg = getDTG();
 		borderString = createBookEnd(borderStr);
 		padMessageLength = getPadMessageLength();
 		topBottomBorder = createTopBottomBorder(borderStr);
@@ -40,8 +41,9 @@ public class CliRunner implements CommandLineRunner {
 	}
 	
 	public static int getPadMessageLength() {
-		if (message.length() < getDTG().length()) {
-			padMessageLength = getDTG().length();
+		int dtgLength = dtg.length();
+		if (message.length() < dtgLength) {
+			padMessageLength = dtgLength;
 		} else {
 			padMessageLength = message.length();
 		}
@@ -50,14 +52,12 @@ public class CliRunner implements CommandLineRunner {
 	}
 	
 	public static String createBookEnd(String borderStr) {		
-		for (int i = 0; i < 5; i++) { borderString += borderStr; }
+		borderString = borderStr.repeat(5);
 		return borderString;
 	}
 	
 	public static String createTopBottomBorder(String borderString) {
-		for (int i = 0; i < padMessageLength; i++) {
-			topBottomBorder += topBottomBorder;
-		}
+		topBottomBorder = borderString.repeat(padMessageLength);
 		
 		return topBottomBorder;
 	}
@@ -72,7 +72,7 @@ public class CliRunner implements CommandLineRunner {
 	}
 	
 	public static String createMessage() {
-		message = borderString + " Logged message: " + message + " " + borderString;
+		message = borderString + " " + message + " " + borderString;
 		return message;
 	}
 	
@@ -80,7 +80,8 @@ public class CliRunner implements CommandLineRunner {
 
 		logger.info(topBottomBorder);
 		logger.info(createMessage());
-		logger.info(getDTG());
+		message = dtg;
+		logger.info(createMessage());
 		logger.info(topBottomBorder);
 	}
 }
