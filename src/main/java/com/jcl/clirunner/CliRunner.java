@@ -72,7 +72,8 @@ public class CliRunner implements CommandLineRunner {
 	}
 	
 	public static String createMessage() {
-		message = borderString + " " + message + " " + borderString;
+		//message = borderString + " " + message + " " + borderString;
+		message = borderString + " " + message;
 		return message;
 	}
 	
