@@ -156,6 +156,20 @@ public class StudentController {
 		
 		return studentResponseList;
 	}
+	
+	@GetMapping("/startsWith/{firstName}")
+	public List<StudentResponse> startsWith(@PathVariable String firstName) {
+		
+		List<Student> studentList = studentService.startsWith(firstName);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
 
 //	@GetMapping("/get")
 //	// @RequestMapping(value = "/get", method = RequestMethod.GET)
