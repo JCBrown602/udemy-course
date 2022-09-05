@@ -94,6 +94,19 @@ public class StudentController {
 		return studentResponseList;
 	}
 	
+	@GetMapping("/getByEmail/{email}")
+	public List<StudentResponse> getByEmail(@PathVariable String email) {
+		List<Student> studentList = studentService.getByEmail(email);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
+	
 	@GetMapping("/getByFirstNameAndLastName/{firstName}/{lastName}")
 	public StudentResponse getByFirstNameAndLastName(@PathVariable String firstName,
 			@PathVariable String lastName) {
