@@ -27,7 +27,7 @@ public class CliRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("It begins...");
+		logger.info("Started CLI Runner.");
 	}
 
 	public static void loggit(String msg, String borderStr) {

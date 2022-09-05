@@ -104,4 +104,8 @@ public class StudentService {
 	public List<Student> startsWith(String firstName) {
 		return studentRepository.findByFirstNameStartsWith(firstName);
 	}
+	
+	public List<Student> endsWith(String firstName) {
+		return studentRepository.findByFirstNameEndsWith(firstName);
+	}
 }

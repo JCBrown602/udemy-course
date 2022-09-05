@@ -143,6 +143,7 @@ public class StudentController {
 		return studentResponseList;
 	}
 	
+	// select * from student where first_name like '%gus%';
 	@GetMapping("/like/{firstName}")
 	public List<StudentResponse> like(@PathVariable String firstName) {
 		
@@ -161,6 +162,20 @@ public class StudentController {
 	public List<StudentResponse> startsWith(@PathVariable String firstName) {
 		
 		List<Student> studentList = studentService.startsWith(firstName);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
+	
+	@GetMapping("/endsWith/{firstName}")
+	public List<StudentResponse> endsWith(@PathVariable String firstName) {
+		
+		List<Student> studentList = studentService.endsWith(firstName);
 		
 		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
 		
