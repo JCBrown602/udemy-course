@@ -81,6 +81,19 @@ public class StudentController {
 		return studentResponseList;
 	}
 	
+	@GetMapping("/getByLastName/{lastName}")
+	public List<StudentResponse> getByLastName(@PathVariable String lastName) {
+		List<Student> studentList = studentService.getByLastName(lastName);
+		
+		List<StudentResponse> studentResponseList = new ArrayList<StudentResponse>();
+		
+		studentList.stream().forEach(student -> {
+			studentResponseList.add(new StudentResponse(student));
+		});
+		
+		return studentResponseList;
+	}
+	
 	@GetMapping("/getByFirstNameAndLastName/{firstName}/{lastName}")
 	public StudentResponse getByFirstNameAndLastName(@PathVariable String firstName,
 			@PathVariable String lastName) {
